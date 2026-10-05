@@ -64,7 +64,7 @@ Local path from this repo:
 ### Selective import
 
 ```css
-@import((ou-root, avatar-overlap, circle-overlap, ou-reduced-motion) from overlapui)
+@import((ou-root, ou-avatar-colors, avatar-overlap, circle-overlap, ou-reduced-motion) from overlapui)
 
 @ou-root()
 @avatar-overlap(.avatar-overlap)
