@@ -1,7 +1,7 @@
 {
   "name": "overlapui",
   "version": "1.0.0",
-  "description": "CSS-first overlapping UI stacks for FSCSS — avatars, cards, and images that overlap at rest and spread on hover/focus",
+  "description": "CSS-first overlapping UI stacks for FSCSS, avatars, cards, images, and circle menus that overlap at rest and spread on hover/focus",
   "extension": "fscss",
   "fscss_version": "^1.2.3",
   "blocked_methods": [],
@@ -15,7 +15,7 @@
   "homepage": "https://github.com/fscss-ttr/overlapui.fscss#readme",
   "file": {
     "usage": {
-      "directive": "ou-* / avatar-overlap / card-overlap / img-overlap",
+      "directive": "ou-* / avatar-overlap / card-overlap / img-overlap / circle-overlap",
       "helpers": [
         "ou-root",
         "ou-avatar-size",
@@ -26,7 +26,9 @@
         "card-overlap",
         "img-overlap",
         "ou-reduced-motion",
-        "overlapui"
+        "overlapui",
+        "ou-circle-size",
+        "circle-overlap"
       ]
     },
     "modules": [
@@ -48,7 +50,10 @@
     "component",
     "module",
     "hover",
-    "dashboard"
+    "dashboard",
+    "circle-menu",
+    "radial",
+    "fab"
   ],
   "license": "MIT"
 }
