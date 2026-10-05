@@ -1,0 +1,170 @@
+/* overlapui-stacks — focused demo template
+   Dependency: overlapui.fscss (FSCSS 1.2.3+, recommend 1.2.5+)
+*/
+
+/* Local clone: use relative path. Published: from overlapui */
+@import((*) from "../../overlapui.fscss")
+/* @import((*) from overlapui) */
+
+@ou-root()
+@avatar-overlap(.avatar-overlap)
+@card-overlap(.card-overlap)
+@img-overlap(.img-overlap)
+@circle-overlap(.circle-overlap)
+@ou-reduced-motion()
+
+:root {
+  --page-bg: #0b1220;
+  --page-text: #e2e8f0;
+  --page-muted: #94a3b8;
+  --page-card: #121a2e;
+  --page-border: #1e293b;
+
+  --ou-ring: #0f172a;
+  --ou-center-bg: #6366f1;
+  --ou-card-bg: #1e293b;
+  --ou-card-color: #cbd5e1;
+  --ou-card-title: #f8fafc;
+
+  @ou-avatar-size(44px, -14px)
+  @ou-img-size(96px, -48px)
+  @ou-circle-size(48px, 80px)
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  background: var(--page-bg);
+  color: var(--page-text);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.45;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 20px 64px;
+}
+
+header.page-head {
+  margin-bottom: 36px;
+}
+
+header.page-head h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+header.page-head p {
+  margin-top: 8px;
+  color: var(--page-muted);
+  font-size: 0.95rem;
+  max-width: 42rem;
+}
+
+header.page-head a {
+  color: #a5b4fc;
+}
+
+.grid {
+  display: grid;
+  gap: 28px;
+}
+
+@media (min-width: 800px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.section {
+  background: var(--page-card);
+  border: 1px solid var(--page-border);
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.section h2 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--page-muted);
+  margin-bottom: 16px;
+}
+
+.section .hint {
+  margin-top: 14px;
+  font-size: 0.8rem;
+  color: var(--page-muted);
+}
+
+.center-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
+
+.circle-demo {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  padding: 24px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--page-border);
+}
+
+th {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--page-muted);
+  font-weight: 600;
+}
+
+.member-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.member-meta strong {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.member-meta span {
+  font-size: 0.75rem;
+  color: var(--page-muted);
+}
+
+.amount.pos { color: #4ade80; font-weight: 600; }
+.amount.neg { color: #f87171; font-weight: 600; }
+
+footer.page-foot {
+  margin-top: 32px;
+  font-size: 0.8rem;
+  color: var(--page-muted);
+}
+
+footer.page-foot a { color: #a5b4fc; }
