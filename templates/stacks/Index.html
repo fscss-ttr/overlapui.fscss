@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>overlapui stacks — template</title>
+  <meta name="description" content="Template demo for overlapui.fscss: avatar, card, image, and circle stacks.">
+  <script src="https://cdn.jsdelivr.net/npm/fscss@1.2.5/runtime.min.js" defer></script>
+  <link type="text/fscss" href="stacks.fscss">
+  <!-- Prod: npx fscss@1.2.5 stacks.fscss css/stacks.css then link css/stacks.css -->
+</head>
+<body>
+  <div class="page">
+    <header class="page-head">
+      <h1>overlapui stacks</h1>
+      <p>
+        Focused template for
+        <a href="https://github.com/fscss-ttr/overlapui.fscss" target="_blank" rel="noopener">overlapui.fscss</a>
+        — avatars, cards, images, and a radial circle menu. Hover or focus stacks to open them.
+      </p>
+    </header>
+
+    <div class="grid">
+      <section class="section">
+        <h2>Avatar overlap</h2>
+        <div class="center-block">
+          <ul class="avatar-overlap" tabindex="0">
+            <li data-alph="g">Gina</li>
+            <li data-alph="h"><img src="https://i.pravatar.cc/80?img=12" alt="">Hank</li>
+            <li data-alph="i">Ivy</li>
+            <li data-alph="j">Jo</li>
+            <li data-alph="5">Ops</li>
+          </ul>
+        </div>
+        <p class="hint">data-alph drives letter + color · optional img covers the face</p>
+      </section>
+
+      <div class="grid grid-2">
+        <section class="section">
+          <h2>Card overlap</h2>
+          <div class="card-overlap" tabindex="0">
+            <div>
+              <img src="https://picsum.photos/96?random=1" alt="">
+              <h3>Invoice paid</h3>
+              Acme · $2,400
+            </div>
+            <div>
+              <img src="https://picsum.photos/96?random=2" alt="">
+              <h3>Seat added</h3>
+              overlapui workspace
+            </div>
+            <div>
+              <img src="https://picsum.photos/96?random=3" alt="">
+              <h3>Comment</h3>
+              “Ship the circle menu”
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Image overlap</h2>
+          <div class="center-block">
+            <div class="img-overlap" tabindex="0">
+              <img src="https://picsum.photos/120?random=4" alt="">
+              <img src="https://picsum.photos/120?random=5" alt="">
+              <img src="https://picsum.photos/120?random=6" alt="">
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="section">
+        <h2>Circle overlap (settings-style)</h2>
+        <div class="circle-demo">
+          <div class="circle-overlap" style="--n:5" tabindex="0">
+            <button type="button" aria-label="Open menu">+</button>
+            <a href="#profile" aria-label="Profile">P</a>
+            <a href="#billing" aria-label="Billing">B</a>
+            <a href="#team" aria-label="Team">T</a>
+            <a href="#keys" aria-label="API keys">K</a>
+            <a href="#out" aria-label="Sign out">×</a>
+          </div>
+        </div>
+        <p class="hint">First child is the center · --n is satellite count</p>
+      </section>
+
+      <section class="section">
+        <h2>Members table</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Members</th>
+                <th>Role</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="member-cell">
+                    <ul class="avatar-overlap" tabindex="0">
+                      <li data-alph="a"><img src="https://i.pravatar.cc/72?img=11" alt="">Ada</li>
+                      <li data-alph="n">Nia</li>
+                      <li data-alph="k">Ken</li>
+                    </ul>
+                    <div class="member-meta">
+                      <strong>Design pod</strong>
+                      <span>3 people</span>
+                    </div>
+                  </div>
+                </td>
+                <td>Product design</td>
+                <td class="amount pos">+$1,240</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="member-cell">
+                    <ul class="avatar-overlap" tabindex="0">
+                      <li data-alph="m">Mo</li>
+                      <li data-alph="s"><img src="https://i.pravatar.cc/72?img=15" alt="">Sam</li>
+                    </ul>
+                    <div class="member-meta">
+                      <strong>Platform</strong>
+                      <span>2 people</span>
+                    </div>
+                  </div>
+                </td>
+                <td>Engineering</td>
+                <td class="amount pos">+$890</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="member-cell">
+                    <ul class="avatar-overlap" tabindex="0">
+                      <li data-alph="r">Rae</li>
+                      <li data-alph="j">Jo</li>
+                      <li data-alph="t">Ty</li>
+                    </ul>
+                    <div class="member-meta">
+                      <strong>Growth</strong>
+                      <span>3 people</span>
+                    </div>
+                  </div>
+                </td>
+                <td>GTM</td>
+                <td class="amount neg">−$120</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <footer class="page-foot">
+      Module:
+      <a href="https://github.com/fscss-ttr/overlapui.fscss">overlapui.fscss</a>
+      · Lives in this repo at
+      <code>overlapui.fscss/templates/stacks</code>
+    </footer>
+  </div>
+</body>
+</html>
