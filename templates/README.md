@@ -6,4 +6,4 @@ Example pages for **overlapui.fscss**.
 |--------|-------------|
 | [stacks/](./stacks/) | Avatar, card, image, circle menu, members table |
 
-Add more focused demos as `templates/<name>/` with `index.html` + `*.fscss` + README.
+Feel free to Add more focused demos as `templates/<name>/` with README.
