@@ -498,7 +498,6 @@ ou-reduced-motion
 overlapui.fscss              # FSCSS source (selective)
 overlapui.standalone.fscss   # expands defaults → CSS
 overlapui.css                # compiled (CI / npm)
-overlapui.min.css            # minified when published
 package.json                 # "style": "overlapui.css"
 templates/stacks/            # demo page
 .github/workflows/           # compile standalone on change
