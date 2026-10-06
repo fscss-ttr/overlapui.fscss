@@ -1,49 +1,130 @@
 # overlapui.fscss
 
-> CSS-first overlapping UI stacks for the FSCSS ecosystem.  
-> Avatars, cards, images, and **radial circle menus** that overlap at rest and open on hover/focus — no JS required for the interaction.
+> CSS-first overlapping UI stacks for the FSCSS ecosystem —  
+> **plus plain `overlapui.css` for pages that never touch FSCSS.**
 
-**MIT Licensed** · [github.com/fscss-ttr/overlapui.fscss](https://github.com/fscss-ttr/overlapui.fscss)
+Avatars, cards, images, and **radial circle menus** that overlap at rest and open on hover/focus. No JavaScript for the interaction.
 
-Requires **FSCSS v1.2.3+**. **Recommended: FSCSS 1.2.5 or later** (stable shorthands + array attribute maps).
+**MIT** · **v1.0.0** · [github.com/fscss-ttr/overlapui.fscss](https://github.com/fscss-ttr/overlapui.fscss)
 
-<meta name="description" content="overlapui.fscss — overlapping avatar, card, image, and circle-menu stacks for FSCSS with --ou-* design tokens." />
-<meta name="keywords" content="overlapui, overlapui.fscss, FSCSS, CSS avatar stack, card overlap, image stack, circle menu, pure CSS UI" />
+| Channel | Use |
+|--------|-----|
+| **npm** | `npm install overlapui` |
+| **Plain CSS** | Link `overlapui.css` (no FSCSS) |
+| **FSCSS module** | `@import((…) from overlapui)` — selective, token-driven, smaller output |
+
+Requires **FSCSS v1.2.3+** only when you compile or run `.fscss` source. **Recommended: 1.2.5+**.  
+CSS-only consumers need **no** FSCSS install.
 
 ---
 
 ## Table of Contents
 
 1. [What is overlapui?](#1-what-is-overlapui)
-2. [Installation](#2-installation)
-3. [Design tokens — `@ou-root`](#3-design-tokens--ou-root)
-4. [Mixins](#4-mixins)
-5. [Markup patterns](#5-markup-patterns)
-6. [Full examples](#6-full-examples)
-7. [Token reference](#7-token-reference)
-8. [Accessibility & motion](#8-accessibility--motion)
-9. [License](#9-license)
+2. [Choose a delivery mode](#2-choose-a-delivery-mode)
+3. [Plain CSS (standalone)](#3-plain-css-standalone)
+4. [FSCSS module (customizable)](#4-fscss-module-customizable)
+5. [Default classes (standalone expand)](#5-default-classes-standalone-expand)
+6. [Design tokens — `--ou-*`](#6-design-tokens----ou-)
+7. [Mixins (FSCSS)](#7-mixins-fscss)
+8. [Markup patterns](#8-markup-patterns)
+9. [Full examples](#9-full-examples)
+10. [Token reference](#10-token-reference)
+11. [Accessibility & motion](#11-accessibility--motion)
+12. [Repo layout & build](#12-repo-layout--build)
+13. [License](#13-license)
 
 ---
 
 ## 1. What is overlapui?
 
-**overlapui.fscss** is an FSCSS module for stacked UI:
-
 | Component | Behavior |
 |-----------|----------|
-| **Avatar overlap** | Circles pull together; hover/focus spreads them; `data-alph` sets letter + color |
-| **Card overlap** | Cards peek under each other; expand vertically on hover/focus |
-| **Image overlap** | Tilted photos overlap; straighten and gap on hover/focus |
-| **Circle overlap** | Center trigger; other children fan out on a ring on hover/focus (`--n` = satellite count) |
+| **Avatar overlap** | Faces pull together; hover/focus spreads them; `data-alph` → letter + color |
+| **Card overlap** | Cards peek under each other; expand on hover/focus |
+| **Image overlap** | Tilted photos; straighten and gap on hover/focus |
+| **Circle overlap** | Center control; satellites fan on a ring (`--n` = count) |
 
-Everything is driven by **`--ou-*`** custom properties. Compile with the CLI or run with the browser runtime — output is plain CSS.
+Everything is driven by **`--ou-*`** custom properties.
 
 ---
 
-## 2. Installation
+## 2. Choose a delivery mode
 
-### CLI for production / CDN for prototyping
+```text
+Need only default class names (.avatar-overlap, …)?
+  → Plain CSS: overlapui.css
+
+Need custom selectors, fewer rules, or @define helpers?
+  → FSCSS: import overlapui.fscss (selective)
+```
+
+| Mode | Install | Output size | Selectors |
+|------|---------|-------------|-----------|
+| **Standalone CSS** | `<link>` or npm `style` | Full default expand | Fixed classes below |
+| **FSCSS selective** | CLI / runtime + `@import` | Only what you call | Any selector you pass |
+
+---
+
+## 3. Plain CSS (standalone)
+
+Compiled from `overlapui.standalone.fscss` (CI keeps `overlapui.css` on `main`).
+
+### npm
+
+```bash
+npm install overlapui
+```
+
+```html
+<link rel="stylesheet" href="node_modules/overlapui/overlapui.css">
+```
+
+### jsDelivr CDN
+
+```html
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/overlapui@1.0.0/overlapui.css">
+```
+
+Minified:
+
+```html
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/overlapui@1.0.0/overlapui.min.css">
+```
+
+From GitHub `main`:
+
+```html
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/fscss-ttr/overlapui.fscss@main/overlapui.css">
+```
+
+### CSS `@import`
+
+```css
+@import url("https://cdn.jsdelivr.net/npm/overlapui@1.0.0/overlapui.css");
+```
+
+### Theme without FSCSS
+
+```css
+:root {
+  --ou-size: 40px;
+  --ou-overlap: -12px;
+  --ou-center-bg: #6366f1;
+  --ou-ring: #0f172a;
+}
+```
+
+Markup uses the **default classes** in [§5](#5-default-classes-standalone-expand).
+
+---
+
+## 4. FSCSS module (customizable)
+
+### Runtime prototype
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/fscss@1.2.5/runtime.min.js" defer></script>
@@ -51,25 +132,42 @@ Everything is driven by **`--ou-*`** custom properties. Compile with the CLI or 
 
 ```css
 @import((*) from overlapui)
-
 @overlapui()
 ```
 
-Local path from this repo:
+### npm package as source
 
-```css
-@import((*) from "./overlapui.fscss")
+```bash
+npm install overlapui
 ```
 
-### Selective import
+```css
+@import((*) from "overlapui/overlapui.fscss")
+/* or, if your resolver maps the package name: */
+@import((*) from overlapui)
+```
+
+### Selective import (recommended for production FSCSS)
 
 ```css
-@import((ou-root, ou-avatar-colors, avatar-overlap, circle-overlap, ou-reduced-motion) from overlapui)
+@import((
+  ou-root,
+  ou-avatar-colors,
+  avatar-overlap,
+  circle-overlap,
+  ou-reduced-motion
+) from overlapui)
 
 @ou-root()
-@avatar-overlap(.avatar-overlap)
-@circle-overlap(.circle-overlap)
+@avatar-overlap(.team-faces)
+@circle-overlap(.fab-menu)
 @ou-reduced-motion()
+```
+
+### Remote source (fork / pinned commit)
+
+```css
+@import((*) from "https://cdn.jsdelivr.net/gh/fscss-ttr/overlapui.fscss@main/overlapui.fscss")
 ```
 
 ### CLI
@@ -79,29 +177,72 @@ npm install -g fscss@1.2.5
 fscss app.fscss app.css
 ```
 
-**Version note:** Array-driven `data-alph` color maps work from **1.2.3+**. Prefer **1.2.5+** for property shorthands elsewhere in your app and current stable tooling.
+**Why FSCSS:** custom class names, only the components you call, size helpers (`@ou-avatar-size`, …), same tokens as the CSS build.
 
 ---
 
-## 3. Design tokens — `@ou-root`
+## 5. Default classes (standalone expand)
+
+These selectors are what **`overlapui.css`** contains after compile. Use them as-is with the plain CSS file, or pass different names via FSCSS mixins.
+
+### Roots & motion
+
+| Class / target | Role |
+|----------------|------|
+| `:root` (tokens) | `--ou-*` design tokens from `@ou-root()` |
+| *(media)* `prefers-reduced-motion` | Transitions off via `@ou-reduced-motion()` |
+
+### Avatar
+
+| Class | Role |
+|-------|------|
+| `.avatar-overlap` | Stack root (`display: flex`, …) |
+| `.avatar-overlap > li` | Face cell |
+| `.avatar-overlap > li:first-child` | No pull-in margin |
+| `.avatar-overlap > li::before` | Letter from `data-alph` |
+| `.avatar-overlap > li > img` | Optional photo cover |
+| `.avatar-overlap:hover` / `:focus-within` | Spread siblings |
+
+### Card
+
+| Class | Role |
+|-------|------|
+| `.card-overlap` | Stack root |
+| `.card-overlap > div` | Card panel |
+| `.card-overlap > div img` / `h3` | Media + title |
+| `.card-overlap:hover` / `:focus-within` | Expand stack |
+
+### Image
+
+| Class | Role |
+|-------|------|
+| `.img-overlap` | Stack root |
+| `.img-overlap > img` | Tilted / overlapping images |
+| `.img-overlap:hover` / `:focus-within` | Align + gap |
+
+### Circle
+
+| Class | Role |
+|-------|------|
+| `.circle-overlap` | Radial root; set `--n` on element |
+| `.circle-overlap > :first-child` | Center control |
+| `.circle-overlap > :not(:first-child)` | Satellites |
+| `.circle-overlap:hover` / `:focus-within` | Fan-out |
+
+FSCSS custom example (not in standalone CSS unless you compile it yourself):
 
 ```css
-@ou-root()              /* :root */
-@ou-root(root.theme-dark)   /* scoped */
+@avatar-overlap(.members)
+@circle-overlap(.settings-orbit)
 ```
 
-Helpers:
+→ emits `.members`, `.settings-orbit`, … instead of the defaults.
 
-```css
-:root {
-  @ou-avatar-size(48px, -16px)
-  @ou-card-size(40px, 80px)
-  @ou-img-size(112px, -60px)
-  @ou-circle-size(48px, 80px)  /* item diameter, orbit radius */
-}
-```
+---
 
-Override any token after `@ou-root()`:
+## 6. Design tokens — `--ou-*`
+
+Works the same for **CSS link** and **FSCSS**.
 
 ```css
 :root {
@@ -112,46 +253,48 @@ Override any token after `@ou-root()`:
 }
 ```
 
+FSCSS helpers:
+
+```css
+@ou-root()
+
+:root {
+  @ou-avatar-size(48px, -16px)
+  @ou-card-size(40px, 80px)
+  @ou-img-size(112px, -60px)
+  @ou-circle-size(48px, 80px)
+}
+```
+
 ---
 
-## 4. Mixins
+## 7. Mixins (FSCSS)
 
 | Define | Purpose |
 |--------|---------|
-| `@ou-root(root)` | Inject `--ou-*` tokens |
+| `@ou-root(root)` | Inject `--ou-*` |
 | `@ou-avatar-size(size, overlap)` | Avatar diameter + pull-in |
 | `@ou-card-size(peek, height)` | Card peek / min-height |
 | `@ou-img-size(size, overlap)` | Image size + overlap |
-| `@ou-circle-size(item, radius)` | Circle button size + orbit radius |
-| `@ou-avatar-colors()` | Internal A–Z / 0–9 color arrays (avatar) |
-| `@avatar-overlap(sel)` | Avatar stack + letter colors |
-| `@card-overlap(sel)` | Vertical card stack |
-| `@img-overlap(sel)` | Horizontal image stack |
-| `@circle-overlap(sel)` | Radial menu: center + fan-out |
-| `@ou-reduced-motion()` | Respect `prefers-reduced-motion` |
-| `@overlapui(avatar, card, img, circle)` | Install all with default class names |
+| `@ou-circle-size(item, radius)` | Circle size + orbit |
+| `@ou-avatar-colors()` | Internal A–Z / 0–9 maps |
+| `@avatar-overlap(sel)` | Avatar stack |
+| `@card-overlap(sel)` | Card stack |
+| `@img-overlap(sel)` | Image stack |
+| `@circle-overlap(sel)` | Radial menu |
+| `@ou-reduced-motion()` | Reduced motion |
+| `@overlapui(…)` | Install all defaults |
 
 ```css
 @overlapui()
-/* equals: ou-root + avatar + card + img + circle + reduced-motion */
-```
-
-Custom selectors:
-
-```css
-@avatar-overlap(.team-faces)
-@card-overlap(.notify-stack)
-@img-overlap(.shot-row)
-@circle-overlap(.fab-menu)
+/* ou-root + avatar + card + img + circle + reduced-motion */
 ```
 
 ---
 
-## 5. Markup patterns
+## 8. Markup patterns
 
 ### Avatars
-
-Letter from `data-alph`. Optional `<img>` covers the letter (letter remains fallback). Visible name can stay in the DOM for screen readers (`font-size: 0` on the face).
 
 ```html
 <ul class="avatar-overlap" tabindex="0">
@@ -162,8 +305,6 @@ Letter from `data-alph`. Optional `<img>` covers the letter (letter remains fall
 ```
 
 ### Cards
-
-Direct child `div`s: image + `h3` + text.
 
 ```html
 <div class="card-overlap" tabindex="0">
@@ -192,7 +333,7 @@ Direct child `div`s: image + `h3` + text.
 
 ### Circle
 
-First child is the **center** control; the rest are **satellites**. Set **`--n`** to the number of satellites (not counting the center).
+First child = center; `--n` = satellite count.
 
 ```html
 <div class="circle-overlap" style="--n:5" tabindex="0">
@@ -205,15 +346,59 @@ First child is the **center** control; the rest are **satellites**. Set **`--n`*
 </div>
 ```
 
-Center uses `--ou-center-bg`. Satellite colors use built-in `--c` / `:nth-child` defaults (override with inline `--c` if needed).
-
-Use **`tabindex="0"`** on stacks so keyboard focus can trigger `:focus-within` open/spread.
+Use **`tabindex="0"`** so `:focus-within` matches hover.
 
 ---
 
-## 6. Full examples
+## 9. Full examples
 
-### Minimal avatars
+### CSS-only (no FSCSS)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>overlapui CSS-only</title>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/overlapui@1.0.0/overlapui.min.css">
+  <style>
+    :root {
+      --ou-center-bg: #6366f1;
+      --ou-ring: #0f172a;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      gap: 48px;
+      background: #0b1220;
+    }
+  </style>
+</head>
+<body>
+  <ul class="avatar-overlap" tabindex="0">
+    <li data-alph="g">G</li>
+    <li data-alph="h">H</li>
+    <li data-alph="i">I</li>
+    <li data-alph="j">J</li>
+  </ul>
+
+  <div class="circle-overlap" style="--n:5" tabindex="0">
+    <button type="button" aria-label="Menu">+</button>
+    <a href="#" aria-label="Home">H</a>
+    <a href="#" aria-label="Search">S</a>
+    <a href="#" aria-label="Chat">C</a>
+    <a href="#" aria-label="Groups">G</a>
+    <a href="#" aria-label="Profile">P</a>
+  </div>
+</body>
+</html>
+```
+
+### FSCSS one-shot
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/fscss@1.2.5/runtime.min.js" defer></script>
@@ -238,352 +423,103 @@ Use **`tabindex="0"`** on stacks so keyboard focus can trigger `:focus-within` o
 </ul>
 ```
 
-### Avatars + circle menu
+### FSCSS selective + custom class
+
+```css
+@import((
+ou-root,
+ou-avatar-colors,
+avatar-overlap,
+ou-reduced-motion
+) from overlapui)
+
+@ou-root()
+@avatar-overlap(.members)
+@ou-reduced-motion()
+
+:root {
+  --ou-size: 36px;
+  --ou-overlap: -12px;
+}
+```
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/fscss@1.2.5/runtime.min.js" defer></script>
-<style>
-  @import((*) from overlapui)
-  @overlapui()
-
-  :root {
-    @ou-circle-size(48px, 80px)
-  }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    gap: 48px;
-    background: #0b1220;
-  }
-</style>
-
-<ul class="avatar-overlap" tabindex="0">
-  <li data-alph="g">G</li>
-  <li data-alph="h">H</li>
-  <li data-alph="i">I</li>
-  <li data-alph="j">J</li>
+<ul class="members" tabindex="0">
+  <li data-alph="a">Ada</li>
+  <li data-alph="n">Nia</li>
 </ul>
-
-<div class="circle-overlap" style="--n:5" tabindex="0">
-  <button type="button" aria-label="Menu">+</button>
-  <a href="#">H</a>
-  <a href="#">S</a>
-  <a href="#">C</a>
-  <a href="#">G</a>
-  <a href="#">P</a>
-</div>
-```
-
-### Circle-only FAB
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/fscss@1.2.5/runtime.min.js" defer></script>
-<style>
-  @import((ou-root, circle-overlap, ou-reduced-motion) from overlapui)
-  @ou-root()
-  @circle-overlap(.circle-overlap)
-  @ou-reduced-motion()
-
-  :root {
-    --ou-center-bg: #6366f1;
-    @ou-circle-size(52px, 88px)
-  }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    background: #0b1220;
-  }
-</style>
-
-<div class="circle-overlap" style="--n:4" tabindex="0">
-  <button type="button" aria-label="Actions">+</button>
-  <a href="#home" aria-label="Home">H</a>
-  <a href="#search" aria-label="Search">S</a>
-  <a href="#chat" aria-label="Chat">C</a>
-  <a href="#profile" aria-label="Profile">P</a>
-</div>
-```
-
-**Use cases:** mobile FAB menus, quick emoji/reaction pickers, radial toolbars, “+” compose menus next to avatar stacks in dashboards.
-
-### Dashboard members table
-
-Member column uses **avatar-overlap**; other columns stay normal table layout.
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/fscss@1.2.5/runtime.min.js" defer></script>
-<style>
-  @import((*) from overlapui)
-
-  @ou-root()
-  @avatar-overlap(.avatar-overlap)
-  @ou-reduced-motion()
-
-  :root {
-    --ou-size: 36px;
-    --ou-overlap: -12px;
-    --ou-gap: 8px;
-    --ou-ring: #0f172a;
-  }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    padding: 32px 16px;
-    background: #0b1220;
-    color: #e2e8f0;
-    font-family: system-ui, sans-serif;
-  }
-
-  .panel {
-    max-width: 720px;
-    margin: 0 auto;
-    background: #121a2e;
-    border: 1px solid #1e293b;
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .panel header {
-    padding: 16px 20px;
-    border-bottom: 1px solid #1e293b;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  }
-
-  th, td {
-    padding: 14px 20px;
-    text-align: left;
-    border-bottom: 1px solid #1e293b;
-  }
-
-  th {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #94a3b8;
-  }
-
-  td.role { color: #94a3b8; }
-  td.amount {
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-  }
-  td.amount.pos { color: #4ade80; }
-  td.amount.neg { color: #f87171; }
-
-  .member {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .member-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .member-meta strong { font-size: 14px; color: #f8fafc; }
-  .member-meta span { font-size: 12px; color: #64748b; }
-</style>
-
-<div class="panel">
-  <header>Team · active members</header>
-  <table>
-    <thead>
-      <tr>
-        <th>Members</th>
-        <th>Role</th>
-        <th>Plan</th>
-        <th>Balance</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <div class="member">
-            <ul class="avatar-overlap" tabindex="0">
-              <li data-alph="a"><img src="https://i.pravatar.cc/72?img=11" alt="">Ada</li>
-              <li data-alph="n">Nia</li>
-              <li data-alph="k">Ken</li>
-            </ul>
-            <div class="member-meta">
-              <strong>Design pod</strong>
-              <span>3 people</span>
-            </div>
-          </div>
-        </td>
-        <td class="role">Product design</td>
-        <td>Pro</td>
-        <td class="amount pos">+$1,240</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="member">
-            <ul class="avatar-overlap" tabindex="0">
-              <li data-alph="m"><img src="https://i.pravatar.cc/72?img=12" alt="">Mo</li>
-              <li data-alph="s">Sam</li>
-            </ul>
-            <div class="member-meta">
-              <strong>Platform</strong>
-              <span>2 people</span>
-            </div>
-          </div>
-        </td>
-        <td class="role">Engineering</td>
-        <td>Team</td>
-        <td class="amount pos">+$890</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="member">
-            <ul class="avatar-overlap" tabindex="0">
-              <li data-alph="r">Rae</li>
-              <li data-alph="j"><img src="https://i.pravatar.cc/72?img=15" alt="">Jo</li>
-              <li data-alph="t">Ty</li>
-              <li data-alph="5">Ops</li>
-            </ul>
-            <div class="member-meta">
-              <strong>Growth</strong>
-              <span>4 people</span>
-            </div>
-          </div>
-        </td>
-        <td class="role">GTM</td>
-        <td>Starter</td>
-        <td class="amount neg">−$120</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-```
-
-### Notification card stack
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/fscss@1.2.5/runtime.min.js" defer></script>
-<style>
-  @import((ou-root, card-overlap, ou-reduced-motion) from overlapui)
-  @ou-root()
-  @card-overlap(.card-overlap)
-  @ou-reduced-motion()
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    background: #0b1220;
-    font-family: system-ui, sans-serif;
-  }
-</style>
-
-<div class="card-overlap" tabindex="0">
-  <div>
-    <img src="https://picsum.photos/96?random=1" alt="">
-    <h3>Invoice paid</h3>
-    Acme Corp · $2,400
-  </div>
-  <div>
-    <img src="https://picsum.photos/96?random=2" alt="">
-    <h3>Seat added</h3>
-    overlapui workspace
-  </div>
-  <div>
-    <img src="https://picsum.photos/96?random=3" alt="">
-    <h3>Comment</h3>
-    “Ship the avatar stack”
-  </div>
-</div>
-```
-
-### Image strip
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/fscss@1.2.5/runtime.min.js" defer></script>
-<style>
-  @import((*) from overlapui)
-  @ou-root()
-  @img-overlap(.img-overlap)
-  @ou-reduced-motion()
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    background: #0b1220;
-  }
-</style>
-
-<div class="img-overlap" tabindex="0">
-  <img src="https://picsum.photos/120?random=4" alt="">
-  <img src="https://picsum.photos/120?random=5" alt="">
-  <img src="https://picsum.photos/120?random=6" alt="">
-</div>
 ```
 
 ---
 
-## 7. Token reference
+## 10. Token reference
 
 | Variable | Default (approx.) | Usage |
 |----------|-------------------|--------|
-| `--ou-ring` | `#17203a` | Avatar/image/circle ring color |
-| `--ou-ease` | `cubic-bezier(.3, 1.3, .5, 1)` | Spread / fan easing |
-| `--ou-time` | `.35s` | Transition duration |
+| `--ou-ring` | `#17203a` | Ring color |
+| `--ou-ease` | `cubic-bezier(.3, 1.3, .5, 1)` | Easing |
+| `--ou-time` | `.35s` | Duration |
 | `--ou-size` | `44px` | Avatar diameter |
-| `--ou-overlap` | `-14px` | Avatar pull-in (`margin-left`) |
+| `--ou-overlap` | `-14px` | Avatar pull-in |
 | `--ou-gap` | `6px` | Avatar spread gap |
 | `--ou-c` | `#f59e0b` | Fallback face color |
 | `--ou-letter` | `#fff` | Letter color |
 | `--ou-ring-width` | `3px` | Ring thickness |
-| `--ou-peek` | `34px` | Visible card peek |
+| `--ou-peek` | `34px` | Card peek |
 | `--ou-card-h` | `76px` | Card min-height |
-| `--ou-card-gap` | `10px` | Card spread gap |
+| `--ou-card-gap` | `10px` | Card gap when open |
 | `--ou-card-bg` | `#1f2a48` | Card background |
 | `--ou-card-color` | `#cbd5ee` | Card body text |
-| `--ou-card-title` | `#fff` | Card `h3` |
+| `--ou-card-title` | `#fff` | Card title |
 | `--ou-img` | `96px` | Image size |
 | `--ou-img-overlap` | `-52px` | Image pull-in |
-| `--ou-img-gap` | `12px` | Image spread gap |
-| `--ou-img-tilt` / `--ou-img-tilt-even` | `-5deg` / `4deg` | Rest rotation |
-| `--ou-item` | `48px` | Circle control diameter |
-| `--ou-r` | `86px` | Orbit radius (center → satellite) |
-| `--ou-center-bg` | `#ec4899` | Center button background |
-| `--n` | `6` | Satellite count (set on element) |
+| `--ou-img-gap` | `12px` | Image gap when open |
+| `--ou-img-tilt` / `--ou-img-tilt-even` | `-5deg` / `4deg` | Rest tilt |
+| `--ou-item` | `48px` | Circle control size |
+| `--ou-r` | `86px` | Orbit radius |
+| `--ou-center-bg` | `#ec4899` | Center button |
+| `--n` | `6` | Satellite count (on element) |
 
 ---
 
-## 8. Accessibility & motion
+## 11. Accessibility & motion
 
-- Keep **real names** (or labels) in the DOM for avatars; faces use `font-size: 0` for the decorative letter only.
-- Provide meaningful **`alt`** on photos when the image carries meaning; decorative faces can use empty `alt` with the name in text beside the stack.
-- **`tabindex="0"`** on the stack enables keyboard `:focus-within` spread / fan-out.
-- For **circle-overlap**, put an accessible name on the center control (`aria-label` on the button) and on each link/button; prefer real labels over letters alone when the control is the only affordance.
-- `@ou-reduced-motion()` disables transform/margin transitions when the user prefers reduced motion (includes `.circle-overlap > *`).
+- Keep **real names** in the DOM for avatars; faces may use `font-size: 0` for the decorative letter.
+- Meaningful **`alt`** when the image matters; otherwise name text beside the stack.
+- **`tabindex="0"`** on stack roots for keyboard `:focus-within`.
+- **`aria-label`** on circle center and each action.
+- Standalone CSS includes reduced-motion rules; under FSCSS call `@ou-reduced-motion()`.
 
 ---
 
-## 9. License
+## 12. Repo layout & build
 
-MIT · Built with [FSCSS](https://fscss.devtem.org) · [fscss-ttr](https://github.com/fscss-ttr)
-
-```bash
-npm install -g fscss@1.2.5   # recommended
+```text
+overlapui.fscss              # FSCSS source (selective)
+overlapui.standalone.fscss   # expands defaults → CSS
+overlapui.css                # compiled (CI / npm)
+overlapui.min.css            # minified when published
+package.json                 # "style": "overlapui.css"
+templates/stacks/            # demo page
+.github/workflows/           # compile standalone on change
 ```
 
-[Issues](https://github.com/fscss-ttr/overlapui.fscss/issues) · [FSCSS docs](https://fscss.devtem.org/docs)
+Local compile:
+
+```bash
+npm install -g fscss@1.2.5
+fscss overlapui.standalone.fscss overlapui.css
+```
+
+---
+
+## 13. License
+
+MIT · [FSCSS](https://fscss.devtem.org) · [fscss-ttr](https://github.com/fscss-ttr)
+
+```bash
+npm install overlapui
+npm install -g fscss@1.2.5   # only if you use the .fscss source
+```
+
+[Issues](https://github.com/fscss-ttr/overlapui.fscss/issues) · [FSCSS](https://fscss.devtem.org/)
