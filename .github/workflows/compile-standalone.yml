@@ -34,9 +34,9 @@ jobs:
       - name: Compile standalone → overlapui.css
         run: |
           fscss overlapui.standalone.fscss overlapui.css
-          # optional minified sibling if your CLI supports it; otherwise skip
-          if command -v fscss >/dev/null 2>&1; then
-            fscss overlapui.standalone.fscss overlapui.min.css 2>/dev/null || true
+          # optional minified sibling if CLI supports it; otherwise skip
+          # if command -v fscss >/dev/null 2>&1; then
+          #  fscss overlapui.standalone.fscss overlapui.min.css 2>/dev/null || true
           fi
           ls -la overlapui.css
           head -n 5 overlapui.css
@@ -47,7 +47,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add overlapui.css
-          git add overlapui.min.css 2>/dev/null || true
+          # git add overlapui.min.css 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No CSS changes"
           else
@@ -61,4 +61,3 @@ jobs:
           name: overlapui-css
           path: |
             overlapui.css
-            overlapui.min.css
