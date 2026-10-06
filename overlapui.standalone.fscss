@@ -1,0 +1,25 @@
+/* overlapui.standalone.fscss
+   Full expand of overlapui for developers who link plain CSS only.
+   Selective / token-driven use: import from overlapui.fscss in your own .fscss file.
+
+   Build:  npx fscss@1.2.5 overlapui.standalone.fscss overlapui.css
+   CI:     .github/workflows/compile-standalone.yml
+*/
+
+@import((*) from "./overlapui.fscss")
+
+/* Expand every public mixin onto default selectors */
+@ou-root()
+@avatar-overlap(.avatar-overlap)
+@card-overlap(.card-overlap)
+@img-overlap(.img-overlap)
+@circle-overlap(.circle-overlap)
+@ou-reduced-motion()
+
+/* Size helpers applied at :root so CSS-only pages can override --ou-* */
+:root {
+  /* defaults already from @ou-root(); helpers restate common knobs for docs/search */
+  /* Consumers override in their stylesheet after linking overlapui.css:
+       :root { --ou-size: 40px; --ou-overlap: -12px; }
+  */
+}
