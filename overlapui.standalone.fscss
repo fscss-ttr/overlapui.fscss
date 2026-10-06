@@ -6,7 +6,9 @@
    CI:     .github/workflows/compile-standalone.yml
 */
 
-@import((*) from "./overlapui.fscss")
+@import((
+*
+) from "./overlapui.fscss")
 
 /* Expand every public mixin onto default selectors */
 @ou-root()
