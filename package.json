@@ -15,6 +15,36 @@
   "scripts": {
     "build:css": "fscss overlapui.standalone.fscss overlapui.css"
   },
-  "keywords": ["fscss", "css", "overlap", "avatar", "ui"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fscss-ttr/overlapui.fscss.git"
+  },
+  "homepage": "https://github.com/fscss-ttr/overlapui.fscss#readme",
+  "bugs": {
+    "url": "https://github.com/fscss-ttr/overlapui.fscss/issues"
+  },
+  "author": {
+    "name": "Figsh",
+    "url": "https://github.com/Figsh"
+  },
+  "contributors": [
+    {
+      "name": "fscss-ttr",
+      "url": "https://github.com/fscss-ttr"
+    }
+  ],
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/Figsh"
+  },
+  "keywords": [
+    "fscss",
+    "css",
+    "overlap",
+    "avatar",
+    "ui",
+    "circle-menu",
+    "card-stack"
+  ],
   "license": "MIT"
 }
