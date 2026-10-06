@@ -1,59 +1,20 @@
 {
   "name": "overlapui",
   "version": "1.0.0",
-  "description": "CSS-first overlapping UI stacks for FSCSS, avatars, cards, images, and circle menus that overlap at rest and spread on hover/focus",
-  "extension": "fscss",
-  "fscss_version": "^1.2.3",
-  "blocked_methods": [],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fscss-ttr/overlapui.fscss"
-  },
-  "bugs": {
-    "url": "https://github.com/fscss-ttr/overlapui.fscss/issues"
-  },
-  "homepage": "https://github.com/fscss-ttr/overlapui.fscss#readme",
-  "file": {
-    "usage": {
-      "directive": "ou-* / avatar-overlap / card-overlap / img-overlap / circle-overlap",
-      "helpers": [
-        "ou-root",
-        "ou-avatar-size",
-        "ou-card-size",
-        "ou-img-size",
-        "ou-avatar-colors",
-        "avatar-overlap",
-        "card-overlap",
-        "img-overlap",
-        "ou-reduced-motion",
-        "overlapui",
-        "ou-circle-size",
-        "circle-overlap"
-      ]
-    },
-    "modules": [
-      "./overlapui.fscss"
-    ],
-    "remote": "./overlapui.fscss"
-  },
-  "author": {
-    "name": "fscss-ttr"
-  },
-  "keywords": [
-    "fscss",
-    "css",
-    "ui",
-    "avatar",
-    "overlap",
-    "stack",
-    "card",
-    "component",
-    "module",
-    "hover",
-    "dashboard",
-    "circle-menu",
-    "radial",
-    "fab"
+  "description": "CSS-first overlapping UI stacks for FSCSS — plus plain overlapui.css for non-FSCSS pages",
+  "main": "overlapui.fscss",
+  "style": "overlapui.css",
+  "files": [
+    "overlapui.fscss",
+    "overlapui.standalone.fscss",
+    "overlapui.css",
+    "overlapui.min.css",
+    "README.md",
+    "templates"
   ],
+  "scripts": {
+    "build:css": "fscss overlapui.standalone.fscss overlapui.css"
+  },
+  "keywords": ["fscss", "css", "overlap", "avatar", "ui"],
   "license": "MIT"
 }
