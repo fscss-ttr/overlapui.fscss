@@ -1,0 +1,502 @@
+/* overlapui.standalone.fscss
+Full expand of overlapui for developers who link plain CSS only.
+Selective / token-driven use: import from overlapui.fscss in your own .fscss file.
+Build:  npx fscss@1.2.5 overlapui.standalone.fscss overlapui.css
+CI:     .github/workflows/compile-standalone.yml
+*/
+
+/* Expand every public mixin onto default selectors */
+
+:root {
+--ou-ring: #17203a;
+--ou-ease: cubic-bezier(.3, 1.3, .5, 1);
+--ou-time: .35s;
+/* avatar-overlap */
+--ou-size: 44px;
+--ou-overlap: -14px;
+--ou-gap: 6px;
+--ou-c: #f59e0b;
+--ou-letter: #fff;
+--ou-ring-width: 3px;
+/* card-overlap */
+--ou-peek: 34px;
+--ou-card-h: 76px;
+--ou-card-gap: 10px;
+--ou-card-bg: #1f2a48;
+--ou-card-color: #cbd5ee;
+--ou-card-title: #fff;
+--ou-card-radius: 16px;
+--ou-card-pad-y: 10px;
+--ou-card-pad-x: 14px;
+--ou-card-thumb: 48px;
+--ou-card-thumb-radius: 12px;
+/* img-overlap */
+--ou-img: 96px;
+--ou-img-overlap: -52px;
+--ou-img-gap: 12px;
+--ou-img-radius: 18px;
+--ou-img-border: 3px;
+--ou-img-tilt: -5deg;
+--ou-img-tilt-even: 4deg;
+/* circle-overlap */
+--ou-item: 48px;
+--ou-r: 86px;
+--ou-center-bg: #ec4899;
+--n: 6;
+}
+
+.avatar-overlap {
+display: flex;
+align-items: center;
+width: max-content;
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.avatar-overlap > li {
+position: relative;
+display: grid;
+place-items: center;
+flex: none;
+width: var(--ou-size);
+height: var(--ou-size);
+margin-left: var(--ou-overlap);
+border-radius: 50%;
+background: var(--ou-c);
+box-shadow: 0 0 0 var(--ou-ring-width) var(--ou-ring);
+font-size: 0;
+cursor: pointer;
+transition:
+margin var(--ou-time) var(--ou-ease),
+transform .2s ease;
+}
+.avatar-overlap > li:first-child {
+margin-left: 0;
+}
+.avatar-overlap > li::before {
+content: attr(data-alph);
+text-transform: uppercase;
+font: 700 calc(var(--ou-size) * .4)/1 system-ui, sans-serif;
+color: var(--ou-letter);
+}
+.avatar-overlap > li > img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+border-radius: 50%;
+object-fit: cover;
+}
+.avatar-overlap > li[data-alph] {
+--ou-c: #9ca3af !important;
+}.avatar-overlap > li[data-alph="a"] {
+  --ou-c: #ef4444 !important;
+}
+.avatar-overlap > li[data-alph="b"] {
+  --ou-c: #f97316 !important;
+}
+.avatar-overlap > li[data-alph="c"] {
+  --ou-c: #f59e0b !important;
+}
+.avatar-overlap > li[data-alph="d"] {
+  --ou-c: #eab308 !important;
+}
+.avatar-overlap > li[data-alph="e"] {
+  --ou-c: #84cc16 !important;
+}
+.avatar-overlap > li[data-alph="f"] {
+  --ou-c: #22c55e !important;
+}
+.avatar-overlap > li[data-alph="g"] {
+  --ou-c: #10b981 !important;
+}
+.avatar-overlap > li[data-alph="h"] {
+  --ou-c: #14b8a6 !important;
+}
+.avatar-overlap > li[data-alph="i"] {
+  --ou-c: #06b6d4 !important;
+}
+.avatar-overlap > li[data-alph="j"] {
+  --ou-c: #0ea5e9 !important;
+}
+.avatar-overlap > li[data-alph="k"] {
+  --ou-c: #3b82f6 !important;
+}
+.avatar-overlap > li[data-alph="l"] {
+  --ou-c: #6366f1 !important;
+}
+.avatar-overlap > li[data-alph="m"] {
+  --ou-c: #8b5cf6 !important;
+}
+.avatar-overlap > li[data-alph="n"] {
+  --ou-c: #a855f7 !important;
+}
+.avatar-overlap > li[data-alph="o"] {
+  --ou-c: #d946ef !important;
+}
+.avatar-overlap > li[data-alph="p"] {
+  --ou-c: #ec4899 !important;
+}
+.avatar-overlap > li[data-alph="q"] {
+  --ou-c: #f43f5e !important;
+}
+.avatar-overlap > li[data-alph="r"] {
+  --ou-c: #fb7185 !important;
+}
+.avatar-overlap > li[data-alph="s"] {
+  --ou-c: #fda4af !important;
+}
+.avatar-overlap > li[data-alph="t"] {
+  --ou-c: #fdba74 !important;
+}
+.avatar-overlap > li[data-alph="u"] {
+  --ou-c: #fde047 !important;
+}
+.avatar-overlap > li[data-alph="v"] {
+  --ou-c: #bef264 !important;
+}
+.avatar-overlap > li[data-alph="w"] {
+  --ou-c: #86efac !important;
+}
+.avatar-overlap > li[data-alph="x"] {
+  --ou-c: #5eead4 !important;
+}
+.avatar-overlap > li[data-alph="y"] {
+  --ou-c: #67e8f9 !important;
+}
+.avatar-overlap > li[data-alph="z"] {
+  --ou-c: #7dd3fc !important;
+}.avatar-overlap > li[data-alph="A"] {
+  --ou-c: #ef4444 !important;
+}
+.avatar-overlap > li[data-alph="B"] {
+  --ou-c: #f97316 !important;
+}
+.avatar-overlap > li[data-alph="C"] {
+  --ou-c: #f59e0b !important;
+}
+.avatar-overlap > li[data-alph="D"] {
+  --ou-c: #eab308 !important;
+}
+.avatar-overlap > li[data-alph="E"] {
+  --ou-c: #84cc16 !important;
+}
+.avatar-overlap > li[data-alph="F"] {
+  --ou-c: #22c55e !important;
+}
+.avatar-overlap > li[data-alph="G"] {
+  --ou-c: #10b981 !important;
+}
+.avatar-overlap > li[data-alph="H"] {
+  --ou-c: #14b8a6 !important;
+}
+.avatar-overlap > li[data-alph="I"] {
+  --ou-c: #06b6d4 !important;
+}
+.avatar-overlap > li[data-alph="J"] {
+  --ou-c: #0ea5e9 !important;
+}
+.avatar-overlap > li[data-alph="K"] {
+  --ou-c: #3b82f6 !important;
+}
+.avatar-overlap > li[data-alph="L"] {
+  --ou-c: #6366f1 !important;
+}
+.avatar-overlap > li[data-alph="M"] {
+  --ou-c: #8b5cf6 !important;
+}
+.avatar-overlap > li[data-alph="N"] {
+  --ou-c: #a855f7 !important;
+}
+.avatar-overlap > li[data-alph="O"] {
+  --ou-c: #d946ef !important;
+}
+.avatar-overlap > li[data-alph="P"] {
+  --ou-c: #ec4899 !important;
+}
+.avatar-overlap > li[data-alph="Q"] {
+  --ou-c: #f43f5e !important;
+}
+.avatar-overlap > li[data-alph="R"] {
+  --ou-c: #fb7185 !important;
+}
+.avatar-overlap > li[data-alph="S"] {
+  --ou-c: #fda4af !important;
+}
+.avatar-overlap > li[data-alph="T"] {
+  --ou-c: #fdba74 !important;
+}
+.avatar-overlap > li[data-alph="U"] {
+  --ou-c: #fde047 !important;
+}
+.avatar-overlap > li[data-alph="V"] {
+  --ou-c: #bef264 !important;
+}
+.avatar-overlap > li[data-alph="W"] {
+  --ou-c: #86efac !important;
+}
+.avatar-overlap > li[data-alph="X"] {
+  --ou-c: #5eead4 !important;
+}
+.avatar-overlap > li[data-alph="Y"] {
+  --ou-c: #67e8f9 !important;
+}
+.avatar-overlap > li[data-alph="Z"] {
+  --ou-c: #7dd3fc !important;
+}.avatar-overlap > li[data-alph="1"] {
+  --ou-c: #94a3b8 !important;
+}
+.avatar-overlap > li[data-alph="2"] {
+  --ou-c: #64748b !important;
+}
+.avatar-overlap > li[data-alph="3"] {
+  --ou-c: #475569 !important;
+}
+.avatar-overlap > li[data-alph="4"] {
+  --ou-c: #334155 !important;
+}
+.avatar-overlap > li[data-alph="5"] {
+  --ou-c: #1e293b !important;
+}
+.avatar-overlap > li[data-alph="6"] {
+  --ou-c: #0f172a !important;
+}
+.avatar-overlap > li[data-alph="7"] {
+  --ou-c: #78716c !important;
+}
+.avatar-overlap > li[data-alph="8"] {
+  --ou-c: #57534e !important;
+}
+.avatar-overlap > li[data-alph="9"] {
+  --ou-c: #44403c !important;
+}
+.avatar-overlap > li[data-alph="10"] {
+  --ou-c: #292524 !important;
+}
+.avatar-overlap:hover > li + li,
+.avatar-overlap:focus-within > li + li {
+margin-left: var(--ou-gap);
+}
+.avatar-overlap > li:hover {
+transform: translateY(-4px);
+z-index: 2;
+}
+
+.card-overlap {
+display: flex;
+flex-direction: column;
+width: min(100%, 340px);
+}
+.card-overlap > div {
+position: relative;
+display: grid;
+grid-template-columns: auto 1fr;
+column-gap: 12px;
+align-content: center;
+min-height: var(--ou-card-h);
+margin-top: calc(var(--ou-peek) - var(--ou-card-h));
+padding: var(--ou-card-pad-y) var(--ou-card-pad-x);
+border-radius: var(--ou-card-radius);
+background: var(--ou-card-bg);
+color: var(--ou-card-color);
+font: 400 13px/1.3 system-ui, sans-serif;
+box-shadow:
+0 -6px 16px rgba(0, 0, 0, .35),
+0 0 0 1px rgba(255, 255, 255, .06);
+transition:
+margin var(--ou-time) var(--ou-ease),
+transform .2s ease;
+}
+.card-overlap > div:first-child {
+margin-top: 0;
+}
+.card-overlap > div > img {
+grid-row: span 2;
+width: var(--ou-card-thumb);
+height: var(--ou-card-thumb);
+border-radius: var(--ou-card-thumb-radius);
+object-fit: cover;
+background: linear-gradient(135deg, #16D89D, #015E6B);
+}
+.card-overlap > div > h3 {
+margin: 0;
+align-self: end;
+font-size: 15px;
+color: var(--ou-card-title);
+}
+.card-overlap:hover > div + div,
+.card-overlap:focus-within > div + div {
+margin-top: var(--ou-card-gap);
+}
+.card-overlap > div:hover {
+transform: translateX(6px);
+}
+
+.img-overlap {
+display: flex;
+align-items: center;
+width: max-content;
+padding: 10px;
+}
+.img-overlap > img {
+flex: none;
+width: var(--ou-img);
+height: var(--ou-img);
+margin-left: var(--ou-img-overlap);
+border: var(--ou-img-border) solid var(--ou-ring);
+border-radius: var(--ou-img-radius);
+object-fit: cover;
+background: linear-gradient(135deg, #16D89D, #015E6B);
+box-shadow: 0 8px 18px rgba(0, 0, 0, .35);
+transform: rotate(var(--ou-img-tilt));
+transition:
+margin var(--ou-time) var(--ou-ease),
+transform var(--ou-time) var(--ou-ease);
+}
+.img-overlap > img:first-child {
+margin-left: 0;
+}
+.img-overlap > img:nth-child(even) {
+transform: rotate(var(--ou-img-tilt-even));
+}
+.img-overlap:hover > img,
+.img-overlap:focus-within > img {
+transform: rotate(0);
+}
+.img-overlap:hover > img + img,
+.img-overlap:focus-within > img + img {
+margin-left: var(--ou-img-gap);
+}
+.img-overlap > img:hover {
+transform: translateY(-6px) scale(1.04);
+z-index: 2;
+}
+
+.circle-overlap {
+position: relative;
+z-index: 0;
+isolation: isolate;
+width: var(--ou-item);
+height: var(--ou-item);
+margin: calc(var(--ou-r) + var(--ou-item));
+}
+.circle-overlap > * {
+--c: #6366f1;
+position: absolute;
+inset: 0;
+display: grid;
+place-items: center;
+border: 0;
+border-radius: 50%;
+background: var(--c);
+color: #fff;
+font: 700 18px/1 system-ui, sans-serif;
+text-decoration: none;
+box-shadow: 0 0 0 var(--ou-ring-width) var(--ou-ring);
+cursor: pointer;
+}
+.circle-overlap > :first-child {
+z-index: 2;
+background: var(--ou-center-bg);
+transition: transform var(--ou-time) var(--ou-ease);
+}
+.circle-overlap > :not(:first-child) {
+--a: calc(360deg / var(--n) * var(--i, 0));
+opacity: 0;
+pointer-events: none;
+transform: scale(.5);
+transition:
+transform var(--ou-time) var(--ou-ease),
+opacity .2s ease;
+transition-delay: calc(var(--i, 0) * 30ms);
+}
+.circle-overlap:hover::before,
+.circle-overlap:focus-within::before {
+content: "";
+position: absolute;
+inset: calc((var(--ou-r) + var(--ou-item)) * -1);
+border-radius: 50%;
+}
+.circle-overlap:hover > :not(:first-child),
+.circle-overlap:focus-within > :not(:first-child) {
+opacity: 1;
+pointer-events: auto;
+transform:
+rotate(var(--a))
+translateY(calc(var(--ou-r) * -1))
+rotate(calc(var(--a) * -1));
+}
+.circle-overlap:hover > :first-child,
+.circle-overlap:focus-within > :first-child {
+transform: rotate(45deg);
+}
+.circle-overlap > :not(:first-child):hover {
+filter: brightness(1.15);
+}
+.circle-overlap > :nth-child(2)  { --i: 0; }
+.circle-overlap > :nth-child(3)  { --i: 1; --c: #f59e0b; }
+.circle-overlap > :nth-child(4)  { --i: 2; --c: #22c55e; }
+.circle-overlap > :nth-child(5)  { --i: 3; --c: #06b6d4; }
+.circle-overlap > :nth-child(6)  { --i: 4; --c: #ef4444; }
+.circle-overlap > :nth-child(7)  { --i: 5; --c: #8b5cf6; }
+.circle-overlap > :nth-child(8)  { --i: 6; --c: #14b8a6; }
+.circle-overlap > :nth-child(9)  { --i: 7; --c: #f97316; }
+.circle-overlap > :nth-child(10) { --i: 8; --c: #84cc16; }
+.circle-overlap > :nth-child(11) { --i: 9; --c: #e11d48; }
+.circle-overlap > :nth-child(12) { --i: 10; --c: #0ea5e9; }
+.circle-overlap > :nth-child(13) { --i: 11; --c: #a855f7; }
+
+@media (prefers-reduced-motion: reduce) {
+.avatar-overlap > li,
+.card-overlap > div,
+.img-overlap > img,
+.circle-overlap > * {
+transition: none;
+}
+}
+
+/* Size helpers applied at :root so CSS-only pages can override --ou-* */
+:root {
+/* defaults already from 
+:root {
+--ou-ring: #17203a;
+--ou-ease: cubic-bezier(.3, 1.3, .5, 1);
+--ou-time: .35s;
+/* avatar-overlap */
+--ou-size: 44px;
+--ou-overlap: -14px;
+--ou-gap: 6px;
+--ou-c: #f59e0b;
+--ou-letter: #fff;
+--ou-ring-width: 3px;
+/* card-overlap */
+--ou-peek: 34px;
+--ou-card-h: 76px;
+--ou-card-gap: 10px;
+--ou-card-bg: #1f2a48;
+--ou-card-color: #cbd5ee;
+--ou-card-title: #fff;
+--ou-card-radius: 16px;
+--ou-card-pad-y: 10px;
+--ou-card-pad-x: 14px;
+--ou-card-thumb: 48px;
+--ou-card-thumb-radius: 12px;
+/* img-overlap */
+--ou-img: 96px;
+--ou-img-overlap: -52px;
+--ou-img-gap: 12px;
+--ou-img-radius: 18px;
+--ou-img-border: 3px;
+--ou-img-tilt: -5deg;
+--ou-img-tilt-even: 4deg;
+/* circle-overlap */
+--ou-item: 48px;
+--ou-r: 86px;
+--ou-center-bg: #ec4899;
+--n: 6;
+}
+; helpers restate common knobs for docs/search */
+/* Consumers override in their stylesheet after linking overlapui.css:
+:root { --ou-size: 40px; --ou-overlap: -12px; }
+*/
+}
