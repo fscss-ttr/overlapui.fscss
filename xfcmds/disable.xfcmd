@@ -1,0 +1,4 @@
+# xfcmds/disable.xfcmd
+# liboff overlapui
+say "Disabled {name}. Helper snippets were removed."
+say "Demo folder overlapui-demo/ was kept. Delete it if you do not need it."
