@@ -4,13 +4,19 @@
   "description": "CSS-first overlapping UI stacks for FSCSS — plus plain overlapui.css for non-FSCSS pages",
   "main": "overlapui.fscss",
   "style": "overlapui.css",
+  "extension": "fscss",
+  "fscss_version": ">=1.2.3",
+  "engines": {
+    "fscss": ">=1.2.3"
+  },
   "files": [
     "overlapui.fscss",
     "overlapui.standalone.fscss",
     "overlapui.css",
     "overlapui.min.css",
     "README.md",
-    "templates"
+    "templates",
+    "xfcmds"
   ],
   "scripts": {
     "build:css": "fscss overlapui.standalone.fscss overlapui.css"
@@ -36,6 +42,31 @@
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/Figsh"
+  },
+  "file": {
+    "usage": {
+      "directive": "",
+      "helpers": [
+        "ou-root(root:root)",
+        "ou-avatar-size(size:44px, overlap:-14px)",
+        "ou-card-size(peek:34px, height:76px)",
+        "ou-img-size(size:96px, overlap:-52px)",
+        "ou-circle-size(item:48px, radius:86px)",
+        "ou-avatar-colors()",
+        "avatar-overlap(sel:.avatar-overlap)",
+        "card-overlap(sel:.card-overlap)",
+        "img-overlap(sel:.img-overlap)",
+        "circle-overlap(sel:.circle-overlap)",
+        "ou-reduced-motion()",
+        "overlapui()"
+      ]
+    },
+    "modules": ["./overlapui.fscss"],
+    "remote": "./overlapui.fscss"
+  },
+  "xfcmd": {
+    "enable": "./xfcmds/enable.xfcmd",
+    "disable": "./xfcmds/disable.xfcmd"
   },
   "keywords": [
     "fscss",
