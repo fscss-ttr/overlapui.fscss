@@ -510,6 +510,15 @@ npm install -g fscss@1.2.5
 fscss overlapui.standalone.fscss overlapui.css
 ```
 
+### FSCSS IDE
+
+```xfcmd 
+libon overlapui
+
+```
+Installs helper snippets and overlapui-demo/.
+liboff overlapui removes snippets. 
+
 ---
 
 ## 13. License
